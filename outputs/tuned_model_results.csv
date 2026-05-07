@@ -1,0 +1,4 @@
+model,accuracy,macro_f1,cv_macro_f1,params
+Tuned Random Forest,0.87,0.8699734665495535,0.7856251305883658,"{'clf__max_depth': None, 'clf__max_features': 'log2', 'clf__min_samples_leaf': 1, 'clf__n_estimators': 350}"
+Tuned Extra Trees,0.81,0.8141151042444146,0.7786041164717635,"{'clf__max_depth': 12, 'clf__max_features': 'log2', 'clf__min_samples_leaf': 1, 'clf__n_estimators': 250}"
+Tuned Logistic Regression,0.76,0.7538530342749943,0.6969991463644715,"{'clf__C': 10, 'clf__solver': 'lbfgs'}"

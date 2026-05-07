@@ -1,0 +1,14 @@
+skills,experience_years,education_level,certification,soft_skills,true_role,predicted_role
+Unknown,2,Unknown,Unknown,"Communication, Problem Solving",Mobile Developer,Frontend Developer
+aws,4,Unknown,AWS Cloud Practitioner,Teamwork,DevOps Engineer,Backend Developer
+"Python, Computer Vision, OpenCV, PyTorch, TensorFlow, Deep Learning, Object Detection, Action Recognition, Docker, REST API",2,Unknown,Unknown,"Analytical Thinking, Problem Solving, Attention to Detail, Adaptability",Machine Learning Engineer,Backend Developer
+Unknown,2,Unknown,Unknown,Teamwork,Backend Developer,Frontend Developer
+react,2,Unknown,Unknown,"Communication, Problem Solving",Mobile Developer,Cybersecurity Analyst
+Unknown,2,Unknown,Unknown,"Communication, Problem Solving",Data Analyst,Frontend Developer
+"SQL, Nginx, Business reporting, Git, Postman",1,Bootcamp,TensorFlow Developer,"Problem Solving, Teamwork, Communication",Backend Developer,Data Analyst
+Unknown,4,Unknown,Unknown,"Communication, Problem Solving",Mobile Developer,Frontend Developer
+"Python, Test Automation, REST API, Playwright, CI/CD, SQL, Kafka",4,Unknown,none,"Analytical Thinking, Problem Solving, Communication, Attention to Detail",QA Engineer,Backend Developer
+"Business reporting, Firebase, Power BI, Testing, Regression Testing, Node.js, UI Design, Vite",0,Master,Meta Frontend,"Attention to Detail, Adaptability, Time Management, Critical Thinking",Frontend Developer,Data Analyst
+"PHP, MySQL, SQL, REST API, Git, OOP",2,Bachelor,Unknown,"Teamwork, Problem Solving, Attention to Detail",Backend Developer,Frontend Developer
+"Kotlin, SQLite, Tableau, Java, Networking, API Testing, UI Design, Testing, Mobile UI",2,College,Oracle Java,"Attention to Detail, Critical Thinking, Creativity",Mobile Developer,QA Engineer
+Unknown,2,Unknown,Unknown,Teamwork,Data Analyst,Frontend Developer

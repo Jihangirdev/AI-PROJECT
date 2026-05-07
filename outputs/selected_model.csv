@@ -1,0 +1,2 @@
+selected_model,data_file,feature_note
+Tuned Random Forest,data/job_dataset.csv,"qualification, source, and language were removed from training"
