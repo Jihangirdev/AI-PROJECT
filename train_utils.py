@@ -20,14 +20,14 @@ MODEL_FILE = "outputs/job_role_model.pkl"
 
 
 def load_project_data():
-    """Load and clean the final dataset."""
+    #Load and clean the final dataset
     df = pd.read_csv(DATA)
     df = clean_data(df)
     return df
 
 
 def get_train_test(df):
-    """Create train/test split stratified by job role."""
+    #Create train/test split stratified by job role
     X, y = split_xy(df)
 
     return train_test_split(
@@ -40,7 +40,7 @@ def get_train_test(df):
 
 
 def train_best_model():
-    """Train tuned models and save the best one."""
+    #Train tuned models and save the best one
     Path(OUT).mkdir(exist_ok=True)
 
     df = load_project_data()
@@ -65,7 +65,7 @@ def train_best_model():
 
 
 def get_saved_or_train_model():
-    """Load saved model if it exists, otherwise train it."""
+    #Load saved model if it exists, otherwise train it
     Path(OUT).mkdir(exist_ok=True)
 
     if Path(MODEL_FILE).exists():

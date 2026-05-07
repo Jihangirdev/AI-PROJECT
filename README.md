@@ -3,22 +3,6 @@
 This project predicts an IT job role from a candidate skill profile.
 It uses supervised machine learning with a clean sklearn pipeline.
 
-## Important fix in this version
-
-The `qualification` column is **not used for model training**.
-In real job listing rows, this column can contain the job title itself, for example `QA Engineer at ...`.
-Using it would leak the answer into the model.
-
-The model now trains only on safer features:
-
-- skills
-- experience_years
-- education_level
-- certification
-- soft_skills
-
-The columns `qualification`, `source`, and `language` are kept in the dataset for explanation, but removed from model features.
-
 ## How to install
 
 ```bash

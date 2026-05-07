@@ -16,7 +16,7 @@ from visualization import (
 
 
 def save_errors(model, X_test, y_test):
-    """Save wrong predictions for error analysis."""
+    #Save wrong predictions for error analysis
     pred = model.predict(X_test)
 
     errors = X_test.copy()

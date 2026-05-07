@@ -16,13 +16,13 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 RANDOM_STATE = 42
 
 # These columns are not used for training.
-# qualification is removed because real API rows may contain the job title,
-# which can leak the answer into the input features.
+# qualification is removed because real API rows may contain the job title
+# which can leak the answer into the input features
 DROP_FROM_FEATURES = ["job_role", "source", "qualification", "language"]
 
 
 def clean_data(df):
-    """Clean dataset values before training or prediction."""
+    #Clean dataset values before training or prediction
     df = df.copy()
 
     df["job_role"] = df["job_role"].replace({
@@ -49,7 +49,7 @@ def clean_data(df):
 
 
 def split_xy(df):
-    """Split data into features and target without leaking job titles."""
+    #Split data into features and target without leaking job titles
     drop_cols = [col for col in DROP_FROM_FEATURES if col in df.columns]
     X = df.drop(drop_cols, axis=1)
     y = df["job_role"]
@@ -57,14 +57,13 @@ def split_xy(df):
 
 
 def prepare_candidate(row):
-    """Prepare one input row for prediction using the same safe features."""
-    row = row.copy()
+    #Prepare one input row for prediction using the same safe features
     drop_cols = [col for col in ["source", "qualification", "language"] if col in row.columns]
     return row.drop(drop_cols, axis=1)
 
 
 def preprocessor():
-    """Create preprocessing for safe features only."""
+    #Create preprocessing for safe features only
     return ColumnTransformer([
         ("skills", TfidfVectorizer(ngram_range=(1, 2), min_df=1), "skills"),
         ("soft", TfidfVectorizer(ngram_range=(1, 2), min_df=1), "soft_skills"),
@@ -74,7 +73,7 @@ def preprocessor():
 
 
 def make_model(clf):
-    """Combine preprocessing and classifier into one sklearn pipeline."""
+    #Combine preprocessing and classifier into one sklearn pipeline
     return Pipeline([
         ("prep", preprocessor()),
         ("clf", clf),
@@ -82,7 +81,7 @@ def make_model(clf):
 
 
 def evaluate(name, model, X_test, y_test):
-    """Print and return hold-out test metrics for one model."""
+    #Print and return hold-out test metrics for one model
     pred = model.predict(X_test)
 
     acc = accuracy_score(y_test, pred)
@@ -103,7 +102,7 @@ def evaluate(name, model, X_test, y_test):
 
 
 def cv_score(name, model, X, y):
-    """Calculate 5-fold cross-validation macro F1 for a model."""
+    #Calculate 5-fold cross-validation macro F1 for a model
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
     scores = cross_val_score(model, X, y, cv=cv, scoring="f1_macro", n_jobs=-1)
 
@@ -115,7 +114,7 @@ def cv_score(name, model, X, y):
 
 
 def train_simple_models(X_train, y_train, X_test, y_test):
-    """Train default models and compare them on the test set."""
+    #Train default models and compare them on the test set
     models = {
         "Baseline": DummyClassifier(strategy="most_frequent"),
         "Logistic Regression": LogisticRegression(max_iter=1500, random_state=RANDOM_STATE),
@@ -148,7 +147,7 @@ def train_simple_models(X_train, y_train, X_test, y_test):
 
 
 def cross_validate_simple_models(X, y):
-    """Run the same 5-fold CV metric for all simple models."""
+    #Run the same 5-fold CV metric for all simple models
     models = {
         "Baseline": DummyClassifier(strategy="most_frequent"),
         "Logistic Regression": LogisticRegression(max_iter=1500, random_state=RANDOM_STATE),
@@ -174,7 +173,7 @@ def cross_validate_simple_models(X, y):
 
 
 def tune_logistic_regression(X_train, y_train):
-    """Tune Logistic Regression with GridSearchCV."""
+    #Tune Logistic Regression with GridSearchCV
     model = make_model(LogisticRegression(max_iter=1500, random_state=RANDOM_STATE))
 
     params = {
@@ -189,7 +188,7 @@ def tune_logistic_regression(X_train, y_train):
 
 
 def tune_random_forest(X_train, y_train):
-    """Tune Random Forest with a small but useful parameter grid."""
+    #Tune Random Forest with a small but useful parameter grid
     model = make_model(RandomForestClassifier(random_state=RANDOM_STATE))
 
     params = {
@@ -206,7 +205,7 @@ def tune_random_forest(X_train, y_train):
 
 
 def tune_extra_trees(X_train, y_train):
-    """Tune Extra Trees with the same style of grid as Random Forest."""
+    #Tune Extra Trees with the same style of grid as Random Forest
     model = make_model(ExtraTreesClassifier(random_state=RANDOM_STATE))
 
     params = {
@@ -223,7 +222,7 @@ def tune_extra_trees(X_train, y_train):
 
 
 def tune_models_and_choose_best(X_train, y_train, X_test, y_test):
-    """Tune models and choose the final one by CV macro F1, not by leakage."""
+    #Tune models and choose the final one by CV macro F1, not by leakage
     tuned = {}
 
     lr, lr_params, lr_cv = tune_logistic_regression(X_train, y_train)
@@ -286,7 +285,7 @@ def tune_models_and_choose_best(X_train, y_train, X_test, y_test):
 
 
 def predict_one(model, row):
-    """Predict one candidate row and return probabilities for all roles."""
+    #Predict one candidate row and return probabilities for all roles
     row = prepare_candidate(row)
 
     pred = model.predict(row)[0]
@@ -301,10 +300,10 @@ def predict_one(model, row):
 
 
 def save_model(model, path):
-    """Save trained model."""
+    #Save trained model.
     joblib.dump(model, path)
 
 
 def load_model(path):
-    """Load saved model."""
+    #Load saved model.
     return joblib.load(path)
