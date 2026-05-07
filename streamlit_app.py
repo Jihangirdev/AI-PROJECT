@@ -173,15 +173,5 @@ def main():
         else:
             st.info("Fill the form and click check role to see the result.")
 
-            st.write("Example inputs:")
-            st.markdown(
-                """
-                - Java, Spring Boot, SQL, Docker
-                - React, TypeScript, HTML, CSS
-                - Python, Pandas, Excel, Power BI
-                """
-            )
-
-
 if __name__ == "__main__":
     main()
