@@ -10,7 +10,7 @@ The main idea is simple: if a candidate enters skills like `Python, SQL, pandas,
 
 Website: https://inf375final.streamlit.app/
 
-Video demo:
+Video demo: https://www.youtube.com/watch?v=NVaBjLa5X2U
 
 ## Project Goal
 

@@ -13,7 +13,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-RANDOM_STATE = 42
+RANDOM_STATE = 42    
 
 # These columns are not used for training.
 # qualification is removed because real API rows may contain the job title
